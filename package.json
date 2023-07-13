@@ -1,0 +1,16 @@
+{
+  "name": "realtime-pizza-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "author": "Shubham Gupta",
+  "devDependencies": {
+    "laravel-mix": "^6.0.49",
+    "nodemon": "^3.0.1"
+  },
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-ejs-layouts": "^2.5.1"
+  }
+}
