@@ -1,4 +1,6 @@
 @import './variables';
+@import "~noty/src/noty.scss";
+@import "~noty/src/themes/mint.scss";
 
 body{
     font-family: 'Lato', sans-serif;
@@ -50,6 +52,9 @@ nav li a{
 .empty-cart{
     background: $secondary;
 }
+.amount{
+    color:$primary;
+}
 
 section .login {
     background: $secondary;
@@ -60,4 +65,9 @@ section .login {
             color: $primary-hover;
         }
     }
+}
+
+.noty_theme__mint {
+    border-radius: 50px!important;
+    padding-left: 8px!important;
 }

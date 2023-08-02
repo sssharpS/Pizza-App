@@ -1,5 +1,39 @@
 <section>
-    <!-- <div class="empty-cart py-16">
+
+    <% if(session.cart) { %>
+    <div class="empty-cart py-16">
+        <div class="w-1/2 container mx-auto">
+            <div class="flex items-center mb-6">
+                <img src="Images/cart-black.png" alt="not">
+                <h2 class="font-bold text-2xl ml-6">Order Summary</h2>
+            </div>
+            <hr>
+      
+    <% for(let pizza of Object.values(session.cart.items)){ %>
+            <div class="flex items-center justify-around">
+                <div class="w-1/6 m-4">
+                    <img src="Images/<%= pizza.item.image %>" alt="not">
+                </div>
+                <div>
+                    <h1 class="font-bold text-2xl"><%= pizza.item.name %></h1>
+                    <h3 class="text-xl uppercase "><%= pizza.item.size %></h3>
+                </div>
+                    <h3 class="text-lg"><%= pizza.qty %>pcs</h3>
+                    <h3 class="font-bold text-lg">₹<%=pizza.qty*pizza.item.price%></h3>
+            </div>
+     <%  }  %>
+<hr>
+
+<div class="mt-6 font-bold text-xl text-right">
+    <span>Total Amount: </span>
+    <span class="text-3xl amount">₹ <%= session.cart.totalPrice %></span>
+</div>
+
+      </div>
+    </div>
+
+    <% } else{ %>
+            <div class="empty-cart py-16">
         <div class="container mx-auto">
         <h1 class="text-3xl font-bold text-center m-4">Cart Empty 😕</h1>
         <p class="text-center text-gray-500 text-xl">you probably haven't ordered a pizza yet.<br> To order a pizza, go to main page.</p>
@@ -10,29 +44,7 @@
                 Go back
             </a>   
         </div>
-    </div> -->
+    </div> 
+  <%  } %>
 
-    <div class="empty-cart py-16">
-        <div class="w-1/2 container mx-auto">
-            <div class="flex items-center mb-6">
-                <img src="Images/cart-black.png" alt="not">
-                <h2 class="font-bold text-2xl ml-6">Order Summary</h2>
-            </div>
-            <hr>
-
-        <div>
-            <div class="">
-                <img src="Images/pizza.png" alt="not">
-            </div>
-            <div>
-                <h1 class="font-bold text-2xl">Marinara</h1>
-                <h3 class="text-xl uppercase ">Medium</h3>
-            </div>
-                <h3 class="text-lg">1pcs</h3>
-                <h3 class="font-bold text-lg">₹300</h3>
-        </div>
-      
-
-        </div>
-    </div>
 </section>
