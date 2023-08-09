@@ -10,6 +10,8 @@ const mongoose=require('./config/mongoose');
 const session = require('express-session');
 const flash=require('express-flash');
 const MongoDbStore=require('connect-mongo');
+const passport = require('passport');
+const passportLocalStrategy=require('./config/passport');
 
 
 //session config middleware
@@ -29,10 +31,16 @@ app.use(session({
 //static middleware
 app.use(express.static('assets'));
 app.use(express.json());
+app.use(express.urlencoded({extended:true}));
+
+// passport config
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Global middleware
 app.use((req, res, next) => {
     res.locals.session = req.session;
+    res.locals.user=req.user;
     next();
 })
 
