@@ -38,7 +38,7 @@ passport.use(new LocalStrategy({usernameField:'email'},async(email,password,done
         done(null,user);
       }
       catch(err){
-        done(err,false);
+        done(null,false);
       }
    });
 })

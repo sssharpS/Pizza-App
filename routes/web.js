@@ -5,6 +5,10 @@ const authController=require('../controllers/auth');
 const cartController=require('../controllers/customers/cartController');
 const passport = require('passport');
 const guest=require('../middlewares/guest');
+const orderController=require('../controllers/customers/orderController');
+const adminController=require('../controllers/admin/orderController');
+const {auth}=require('../middlewares/auth');
+const {admin} = require('../middlewares/admin');
 
 router.get('/',homeController.home);
 
@@ -20,10 +24,27 @@ router.post('/register',authController.userRegister);
 
 router.post('/login', passport.authenticate('local',{
 failureRedirect : '/login',
-successRedirect:'/',
 badRequestMessage : 'All fields are required',
-failureFlash: true}));
+failureFlash: true}),(req,res)=>{
+    if(req.user.role=='admin'){
+        return res.redirect('/admin/orders');
+    }
+    else{
+        return res.redirect('/customers/order');
+    }
+});
 
 router.post('/logout',authController.logOut);
+
+//customer routes
+router.post('/orders',auth,orderController.orders);
+router.get('/customers/order',auth,orderController.myOrders);
+
+//admin routes
+
+router.get('/admin/orders',admin,adminController.getOrder);
+
+
+
 
 module.exports=router;

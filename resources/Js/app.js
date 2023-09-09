@@ -1,9 +1,11 @@
 import axios from 'axios';
+import {tableBody } from './admin';
 import Noty from 'noty';
+
 
 let addToCart=document.querySelectorAll('.add-to-cart');
 let itemsCount=document.querySelector('.countItems');
-  console.log(itemsCount);
+  // console.log(itemsCount);
 function updateCart(pizza){
   //ajax request
   axios.post('/update-cart',pizza).then(res =>{
@@ -32,3 +34,14 @@ addToCart.forEach(btn => {
         updateCart(pizza);
     })
 })
+
+
+// Remove alert message after X seconds
+const alertMsg = document.querySelector('#success-alert')
+if(alertMsg) {
+    setTimeout(() => {
+        alertMsg.remove()
+    }, 2000)
+}
+
+tableBody();

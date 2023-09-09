@@ -23,7 +23,7 @@ app.use(session({
         collection:'sessions'
      }),
     saveUninitialized: false,
-    cookie: {maxAge:1000*60*60} //24hours
+    cookie: {maxAge:1000*60*60*24} //24hours
   }))
 
   app.use(flash());
