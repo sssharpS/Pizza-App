@@ -9,6 +9,7 @@ const orderController=require('../controllers/customers/orderController');
 const adminController=require('../controllers/admin/orderController');
 const {auth}=require('../middlewares/auth');
 const {admin} = require('../middlewares/admin');
+const statusController=require('../controllers/admin/statusController');
 
 router.get('/',homeController.home);
 
@@ -39,10 +40,12 @@ router.post('/logout',authController.logOut);
 //customer routes
 router.post('/orders',auth,orderController.orders);
 router.get('/customers/order',auth,orderController.myOrders);
+router.get('/customers/order/status/:id',auth,orderController.orderStatus);
 
 //admin routes
 
 router.get('/admin/orders',admin,adminController.getOrder);
+router.post('/admin/order/status',admin,statusController.changeStatus);
 
 
 

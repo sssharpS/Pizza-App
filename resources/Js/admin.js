@@ -1,6 +1,6 @@
 import axios from 'axios'
 import moment from 'moment'
-// import Noty from 'noty'
+ import Noty from 'noty'
 
 
 function renderItems(items) {
@@ -80,7 +80,22 @@ export function tableBody() {
     }).catch(err => {
         console.log(err)
     })
+ 
 
 
-   
+let socket=io();
+//receive
+socket.on('orderPlaced',(order)=>{
+    new Noty({
+        type:'success',
+        timeout:1000,
+        text: "New order!",
+        progressBar:false
+      }).show();
+    orders.unshift(order);
+    orderTableBody.innerHTML='';
+    orderTableBody.innerHTML=generateMarkup(orders);
+})
+
+
 }
