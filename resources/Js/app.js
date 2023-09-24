@@ -2,12 +2,15 @@ import axios from 'axios';
 import {tableBody } from './admin';
 import Noty from 'noty';
 import moment  from 'moment';
+import {initStripe} from './stripe';
 
 
 let addToCart=document.querySelectorAll('.add-to-cart');
 let itemsCount=document.querySelector('.countItems');
   // console.log(itemsCount);
 function updateCart(pizza){
+
+  
   //ajax request
   axios.post('/update-cart',pizza).then(res =>{
       // console.log(res);
@@ -85,6 +88,11 @@ statuses.forEach((status)=>{
 updateStatus(order);
 
 
+
+
+
+initStripe();
+
 //socket
 
 const socket=io();
@@ -94,7 +102,7 @@ if(order){
 socket.emit('join',`order_${order._id}`);
 }
 
-let AdminPath=window.location.pathname;
+let adminPath=window.location.pathname;
 console.log(adminPath);
 if(adminPath.includes('admin')){
   

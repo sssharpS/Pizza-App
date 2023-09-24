@@ -26,22 +26,24 @@ passport.use(new LocalStrategy({usernameField:'email'},async(email,password,done
     }).catch(err =>{
       return done(null,false,{message:'Something went wrong'});
     });
-
-    //this function stores user in session
-    passport.serializeUser((user,done)=>{
-         done(null,user._id);
-    })
-
-    passport.deserializeUser(async (id,done)=>{
-      try{
-      const user= await User.findById(id);
-        done(null,user);
-      }
-      catch(err){
-        done(null,false);
-      }
-   });
+  
 })
 );
+
+
+  //this function stores user in session
+passport.serializeUser((user,done)=>{
+    done(null,user._id);
+})
+
+passport.deserializeUser(async (id,done)=>{
+ try{
+ const user= await User.findById(id);
+   done(null,user);
+ }
+ catch(err){
+   done(null,false);
+ }
+});
 
 module.exports=passport;

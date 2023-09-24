@@ -25,7 +25,7 @@ app.use(session({
     secret: process.env.COOKIE_SECRET,
     resave: false,
     store:MongoDbStore.create({
-        mongoUrl:'mongodb://localhost/pizza',
+        mongoUrl:process.env.CONNECTION_URL,
         collection:'sessions'
      }),
     saveUninitialized: false,
@@ -81,6 +81,12 @@ io.on('connection',(socket)=>{
 
        socket.join(orderId);
   })
+  socket.on('join',(adminRoom)=>{
+
+
+      socket.join(adminRoom);
+ })
+
 
 });
 
@@ -94,4 +100,5 @@ eventEmitter.on('orderPlaced',(data)=>{
     //we have created room-adminRoom now inside room we emit the message
     console.log(data);
   io.to('adminRoom').emit('orderPlaced',data);
+  
 })

@@ -39,9 +39,14 @@
       
        <% } else { %>
         <div class="text-right">
-            <form action="/orders" method="POST" class="mt-12">
-                <input class="boreder border-gray-400 p-2 w-1/2 mb-4" type="text" placeholder="Phone number" name="phone">
+            <form action="/orders" method="POST" class="mt-12" id="form">
+                <select class="pay border border-gray-400 p-2 w-1/2 mb-4" id="" name="paymentType">
+                    <option value="cod">Cash On Delivery</option>
+                    <option value="card">Card</option>
+                </select>
+                <input class="border border-gray-400 p-2 w-1/2 mb-4" type="text" placeholder="Phone number" name="phone">
                 <input class="border border-gray-400 p-2 w-1/2 mb-4" type="text" placeholder="Address" name="address">
+                <div id="card-element"></div>
                 <div>
                     <button class="btn px-6 py-2 font-bold text-xl rounded-full text-white mt-6" type="submit">Order Now</button>
                 </div>

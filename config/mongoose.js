@@ -1,18 +1,17 @@
 const mongoose = require('mongoose');
 
-const url="mongodb://127.0.0.1/pizza";
 
 
 //where we have to connect
 // {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, useFindAndModify: true }
-mongoose.connect(url);
+mongoose.connect(process.env.CONNECTION_URL);
 
 //store the connection in a variable
-const db=mongoose.connection;
+const connection=mongoose.connection;
 
-db.on('err',console.error.bind(console,"failing in connecting to the database"));
+connection.on('err',console.error.bind(console,"failing in connecting to the database"));
 
-db.once('open',()=>{
+connection.once('open',()=>{
     console.log('successfully connected to the database');
 })
 
