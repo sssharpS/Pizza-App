@@ -56,6 +56,9 @@ app.use(expressEjsLayouts);
 
 //route level middlewares
 app.use('/',require('./routes/web'));
+app.use((req,res)=>{
+    return res.status(404).send('abc');
+})
 
 
 const server=app.listen(port,(err)=>{

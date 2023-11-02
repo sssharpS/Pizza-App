@@ -5,9 +5,10 @@
   "license": "MIT",
   "author": "Shubham Gupta",
   "scripts": {
+    "serve": "node server.js",
     "dev": "nodemon server.js",
     "watch": "mix watch",
-    "production": ""
+    "production": "mix --production"
   },
   "devDependencies": {
     "laravel-mix": "^6.0.49",
